@@ -6,7 +6,7 @@ function DataLoader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadData().then((data) => {
+    loadData("data/random_data.csv").then((data) => {
       setData(data);
       setLoading(false);
     });
