@@ -13,6 +13,9 @@ const Chart = () => {
   return (
     <div className="mx-auto max-w-screen-lg">
       <div className="card rounded-lg shadow-lg py-4 px-6">
+        <h1 className="text-3xl font-medium text-center mb-6">
+          Advanced Data Analysis and Visualization Platform
+        </h1>
         <DataLoader setData={setData} />
         <div className="flex flex-col pl-14">
           <Filter data={data} setFilteredData={setFilteredData} />

@@ -10,6 +10,7 @@ import {
 } from "recharts";
 
 const DisplayChart = ({ aggregatedData, xKey }) => {
+  if (!aggregatedData) return null;
   const monthNames = [
     "Jan",
     "Feb",
