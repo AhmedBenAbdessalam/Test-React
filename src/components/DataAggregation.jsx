@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function DataAggregation({ data, setData, setXAxis }) {
+const DataAggregation = ({
+  filteredData,
+  setAggregatedData,
+  xKey,
+  setXKey,
+}) => {
   const [aggregationType, setAggregationType] = useState("code");
-
+  useEffect(() => {
+    if (xKey === "code") {
+      setAggregatedData(filteredData);
+    } else if (xKey === "year") {
+      setAggregatedData(aggregateByYear(filteredData));
+    } else if (xKey === "month") {
+      setAggregatedData(aggregateByMonth(filteredData));
+    }
+  }, [filteredData, aggregationType]);
   const handleOptionChange = (event) => {
     setAggregationType(event.target.value);
     if (event.target.value === "code") {
-      setXAxis("code");
-      setData(data);
+      setXKey("code");
+      setAggregatedData(filteredData);
     } else if (event.target.value === "year") {
-      setXAxis("year");
-      setData(aggregateByYear(data));
+      setXKey("year");
+      setAggregatedData(aggregateByYear(filteredData));
     } else if (event.target.value === "month") {
-      setXAxis("month");
-      setData(aggregateByMonth(data));
+      setXKey("month");
+      setAggregatedData(aggregateByMonth(filteredData));
     }
   };
 
@@ -50,38 +63,44 @@ function DataAggregation({ data, setData, setXAxis }) {
   };
 
   return (
-    <div>
-      <form>
-        <label>
+    <form className=" flex p-6">
+      <label className="max-w-xs w-full text-left flex-2 block font-medium text-gray-700 mb-2">
+        Select Aggregation Type:
+      </label>
+      <div className=" flex-1 flex items-center ">
+        <label className=" block font-medium text-gray-700 mr-10 ">
           <input
             type="radio"
             value="code"
             checked={aggregationType === "code"}
             onChange={handleOptionChange}
+            className="form-radio mr-2"
           />
           Code
         </label>
-        <label>
+        <label className=" block font-medium text-gray-700 mr-10 ">
           <input
             type="radio"
             value="year"
             checked={aggregationType === "year"}
             onChange={handleOptionChange}
+            className="form-radio mr-2"
           />
           Year
         </label>
-        <label>
+        <label className=" block font-medium text-gray-700 ">
           <input
             type="radio"
             value="month"
             checked={aggregationType === "month"}
             onChange={handleOptionChange}
+            className="form-radio mr-2"
           />
           Month
         </label>
-      </form>
-    </div>
+      </div>
+    </form>
   );
-}
+};
 
 export default DataAggregation;

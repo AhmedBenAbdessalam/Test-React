@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import loadData from "../utilities/loadData";
 
-function DataLoader({ setData }) {
+const DataLoader = ({ setData }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -11,6 +11,6 @@ function DataLoader({ setData }) {
     });
   }, []);
   return <div>{loading ? <p>Loading...</p> : <div></div>}</div>;
-}
+};
 
 export default DataLoader;
