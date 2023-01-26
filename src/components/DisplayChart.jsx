@@ -7,11 +7,8 @@ import {
   Tooltip,
 } from "recharts";
 
-const DisplayChart = ({ data }) => {
-  if (!data.length) return <p>No data to display</p>;
-
+const DisplayChart = ({ data, xAxis }) => {
   const CustomTooltip = ({ active, payload }) => {
-    if (!active || !payload.length) return null;
     if (active) {
       return (
         <div
@@ -32,7 +29,7 @@ const DisplayChart = ({ data }) => {
 
   return (
     <LineChart width={600} height={300} data={data}>
-      <XAxis dataKey="code" />
+      <XAxis dataKey={xAxis} />
       <YAxis />
       <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
       <Line type="monotone" dataKey="value" stroke="#8884d8" />
