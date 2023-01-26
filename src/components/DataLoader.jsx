@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from "react";
 import loadData from "../utilities/loadData";
 
-function DataLoader() {
-  const [data, setData] = useState([]);
+function DataLoader({ setData }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadData("data/random_data.csv").then((data) => {
-      setData(data);
+      setData(data.filter((d) => d.id && d.code && d.value && d.date));
       setLoading(false);
     });
   }, []);
-  return (
-    <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <h1>{data.length}</h1>
-          {console.log(data)}
-        </div>
-      )}
-    </div>
-  );
+  return <div>{loading ? <p>Loading...</p> : <div></div>}</div>;
 }
 
 export default DataLoader;

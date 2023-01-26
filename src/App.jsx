@@ -1,12 +1,10 @@
 import "./App.css";
-import DataLoader from "./components/DataLoader";
-import Filter from "./components/Filter";
+import Chart from "./components/Chart";
 
 function App() {
   return (
     <>
-      <DataLoader />
-      <Filter />
+      <Chart />
     </>
   );
 }
