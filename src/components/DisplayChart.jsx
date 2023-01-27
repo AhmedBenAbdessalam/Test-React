@@ -11,6 +11,7 @@ import {
 
 const DisplayChart = ({ aggregatedData, xKey }) => {
   if (!aggregatedData) return null;
+  const key = JSON.stringify(aggregatedData);
   const monthNames = [
     "Jan",
     "Feb",
@@ -56,7 +57,7 @@ const DisplayChart = ({ aggregatedData, xKey }) => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div key={key} className="flex justify-center">
       <div className="w-full max-w-screen-lg">
         <div className=" overflow-hidden w-full h-auto mx-auto my-auto p-4">
           <ResponsiveContainer width="100%" height={400}>
